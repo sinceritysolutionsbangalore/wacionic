@@ -625,4 +625,12 @@ section {
     margin: 0 auto;
     border-radius: 100px;
 }
+
+.submenuifcond a.collapsed{
+	padding-bottom:0px !important;
+}
+
+.submenuifcond a{
+	padding-bottom:20px !important;
+}
 	

@@ -108,14 +108,19 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	}
 	
 	$scope.getBackPage = function() {
+		
+		$ionicLoading.show ({
+			template:"Loading..."			
+		});
+		
 		var lastItem =  historyArray.pop();
 		
 		   console.log(lastItem);
 
 		   if(lastItem){
 			   	
-			   if(lastItem =="abstract-submission"){
-			  		$scope.pageContent = "";
+				   if(lastItem =="abstract-submission"){
+				  		$scope.pageContent = "";
 						$ionicSideMenuDelegate.toggleLeft(false);
 						$scope.player = $sce.trustAsHtml('<iframe width="100%" height="500px" src="http://ayurworld.org/abstract-submission/"></iframe>');
 
@@ -140,6 +145,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 							$scope.pageContent = "";
 							$scope.pageContent = data.content;
 						  	$ionicSideMenuDelegate.toggleLeft(false);
+						  	$scope.player = "";
 						 });
 					}
 		   }else{
@@ -149,6 +155,10 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 				  ionic.Platform.exitApp(); // stops the app
 			  
 		   }
+		   
+		   $timeout(function () {
+	    	    $ionicLoading.hide();	    	    
+	    	  }, 3000);
 	  	   
 	}
 	 /*
@@ -286,7 +296,9 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	            alert('Oh no, something went wrong');
 	        }
 	    );
-	    $ionicLoading.hide();
+	    $timeout(function () {
+    	    $ionicLoading.hide();	    	    
+    	  }, 3000);
 		
 	};
 
@@ -391,6 +403,10 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	        $ionicScrollDelegate.scrollTop();
 	    }
 	 
+	$scope.gotohome =function (){
+		getHomepage()
+		
+	}
 	 
 	 getHomepage()
 	 function getHomepage(){
@@ -421,7 +437,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
  				  
  				 $(document.getElementsByClassName( value.appendTo.toString()) ).empty();
  				  var elem = $compile('<a data-ng-click="renderPage($event)" data-url="'+value.url+'"  data-url="'+value.url+'"  class="'+value.classTag+'">'+value.text+'</a>')($scope);
- 				  $(document.getElementsByClassName( value.appendTo.toString()) ).append(elem);   
+ 				  $(document.getElementsByClassName( value.appendTo.toString()) ).append(elem); 
+ 				  //$scope.$apply();
  			  });
  				$ionicSideMenuDelegate.toggleLeft(false);
  		  }); 
