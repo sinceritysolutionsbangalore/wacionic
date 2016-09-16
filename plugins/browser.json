@@ -1,0 +1,53 @@
+{
+    "prepare_queue": {
+        "installed": [],
+        "uninstalled": []
+    },
+    "config_munge": {
+        "files": {}
+    },
+    "installed_plugins": {
+        "cordova-plugin-console": {
+            "PACKAGE_NAME": "com.ionicframework.wac143177"
+        },
+        "cordova-plugin-device": {
+            "PACKAGE_NAME": "com.ionicframework.wac143177"
+        },
+        "cordova-plugin-network-information": {
+            "PACKAGE_NAME": "com.ionicframework.wac143177"
+        },
+        "cordova-plugin-splashscreen": {
+            "PACKAGE_NAME": "com.ionicframework.wac143177"
+        },
+        "cordova-plugin-statusbar": {
+            "PACKAGE_NAME": "com.ionicframework.wac143177"
+        },
+        "cordova-plugin-whitelist": {
+            "PACKAGE_NAME": "com.ionicframework.wac143177"
+        },
+        "com.phonegap.plugins.PushPlugin": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        },
+        "ionic-plugin-deploy": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        },
+        "cordova-plugin-file-transfer": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        },
+        "cordova-plugin-file": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        },
+        "com.phonegap.plugins.fileopener": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        },
+        "phonegap-plugin-push": {
+            "SENDER_ID": "wac-ayurworld",
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        }
+    },
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
+        }
+    }
+}
