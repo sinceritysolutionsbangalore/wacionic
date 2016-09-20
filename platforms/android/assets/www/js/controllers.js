@@ -98,7 +98,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	
 .controller('AppCtrl', function($scope, $compile, $window, $sce,
 		$http, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, 
-		$ionicPopup, $ionicLoading, $timeout) {
+		$ionicPopup, $ionicLoading, $cordovaFile, $timeout) {
 	
 	
 	historyArray.push('home');
@@ -119,6 +119,15 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	
 	function getPageBack(){
 		$scope.getBackPage();
+	}
+	
+	
+	
+	$scope.opendownloadsmenu = function(){
+		
+		$ionicSideMenuDelegate.toggleLeft(true);
+		$("#2628").addClass("in");
+		
 	}
 	
 	$scope.getBackPage = function() {
@@ -298,9 +307,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     
     $scope.OpenLink = function(event) {
     	
-    	$ionicLoading.show ({
-			template:"Downloading file..."			
-		});
+    	
 		
 		var url = $(event.target).attr("data-url");
 		var filename = url.substring(url.lastIndexOf('/')+1);
@@ -308,31 +315,101 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 		var fileTransfer = new FileTransfer();
 	    var filePath = cordova.file.externalDataDirectory + filename;
 
-	    fileTransfer.download(
-	        url,
-	        filePath,
-	        function(entry) {
-	            console.log('********OK!', filePath);
-	            $ionicPopup.alert({
-	  	          title: 'File saved',
-	  	          content: filePath
-	  	        })
-	  	        window.plugins.fileOpener.open(filePath);
-	            //window.plugins.pdfViewer.showPdf(filePath);
-	        },
-	        function (error) {
-	           
-	            
-	           // alert(error.code);
-	           // alert(error.source);
-	           // alert(error.target);
-	            //alert(error.http_status);
-	            alert('Oh no, something went wrong');
-	        }
-	    );
-	    $timeout(function () {
-    	    $ionicLoading.hide();	    	    
-    	  }, 3000);
+	    
+	    
+	    $cordovaFile.checkFile(cordova.file.externalDataDirectory, filename)
+	      .then(function (success) {
+	    	  
+	    	// A confirm dialog
+	    	    $ionicLoading.show ({
+		  			template:"Please wait..."			
+		  		});
+	    	    var confirmPopup = $ionicPopup.confirm({
+	    	      title: 'Open File',
+	    	      template: 'File already exists in mobile.Are you sure you want to open the file?'
+	    	    });
+	    	    $ionicLoading.hide();
+
+	    	    confirmPopup.then(function(res) {
+	    	      if(res) {
+	    	    	  $ionicLoading.show ({
+		  		  			template:"Opening the file..."			
+		  		  		});
+	    	    	  window.plugins.fileOpener.open(filePath);
+	    	    	  $ionicLoading.hide();
+	    	      } else {
+	    	        
+	    	      }
+	    	    });
+	    	   
+	    	  
+	    	  
+	    	  
+	        // success
+	      }, function (error) {
+	    	  
+	    	  
+	    	  
+	    	// A confirm dialog
+	    	   
+	    	    var confirmPopup = $ionicPopup.confirm({
+	    	      title: 'Download File',
+	    	      template: 'Are you sure you want to  download the file?'
+	    	    });
+
+	    	    confirmPopup.then(function(res) {
+	    	      if(res) {
+	    	    	  
+	    	    	  $ionicLoading.show ({
+		  		  			template:"Downloading file..."			
+		  		  	  });
+	    	    	  
+	    	    	  fileTransfer.download(
+	  	    		        url,
+	  	    		        filePath,
+	  	    		        function(entry) {
+	  	    		            console.log('********OK!', filePath);
+	  	    		            /*$ionicPopup.alert({
+	  	    		  	          title: 'File saved',
+	  	    		  	          content: filePath
+	  	    		  	        })*/
+	  	    		  	        window.plugins.fileOpener.open(filePath);
+	  	    		          $ionicLoading.hide();
+	  	    		            //window.plugins.pdfViewer.showPdf(filePath);
+	  	    		        },
+	  	    		        function (error) {
+	  	    		           
+	  	    		            
+	  	    		           // alert(error.code);
+	  	    		           // alert(error.source);
+	  	    		           // alert(error.target);
+	  	    		            //alert(error.http_status);
+	  	    		            alert('Oh no, something went wrong');
+	  	    		        }
+	  	    		    );
+	    	    	  
+	    	    	 
+	    	      } else {
+	    	        
+	    	      }
+	    	    });
+	     
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  
+	    	  
+	        // error
+	      });
+	    
+	    
+	    
+	    
+	    
+	    
+	    
+	    
 		
 	};
 
@@ -442,6 +519,10 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 		getHomepage()
 		
 	}
+	
+	
+	
+	
 	 
 	 getHomepage()
 	 function getHomepage(){
@@ -853,8 +934,47 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
         
         
         
-        
-        
+.controller('DownloadsCtrl', function($scope, $ionicPlatform,$ionicLoading, $cordovaFile, $fileFactory) {
+
+	
+	 $cordovaFile.checkFile(cordova.file.dataDirectory, "some_file.txt")
+     .then(function (success) {
+       // success
+     }, function (error) {
+       // error
+     });
+	
+	
+	
+	
+   /* var fs = new $fileFactory();
+
+    $ionicPlatform.ready(function() {
+    	
+    	
+        fs.getEntriesAtRoot().then(function(result) {
+        	
+        	
+            $scope.files = result;
+            alert(result);
+        }, function(error) {
+            console.error(error);
+        });
+
+        $scope.getContents = function(path) {
+            fs.getEntries(path).then(function(result) {
+            	
+                $scope.files = result;
+                $scope.files.unshift({name: "[parent]"});
+                fs.getParentDirectory(path).then(function(result) {
+                    result.name = "[parent]";
+                    $scope.files[0] = result;
+                });
+            });
+        }
+    }); */ 
+
+})
         
         
         

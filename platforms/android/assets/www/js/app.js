@@ -4,7 +4,9 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('starter', ['ionic','ionic.service.core','ngCordova', 'starter.controllers', 'ionic.service.push',  'aCarousel', 'ksSwiper'])
+angular.module('starter', ['ionic','ionic.service.core','ngCordova', 
+                           'starter.controllers', 'ionic.service.push', 
+                           'ui.router', 'aCarousel', 'ksSwiper'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -39,6 +41,78 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova', 'starter.co
   
   
   
+})
+
+
+.factory("$fileFactory", function($q) {
+	
+    var File = function() { };
+
+    File.prototype = {
+
+        getParentDirectory: function(path) {
+            var deferred = $q.defer();
+            window.resolveLocalFileSystemURI(path, function(fileSystem) {
+                fileSystem.getParent(function(result) {
+                    deferred.resolve(result);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+            }, function(error) {
+            	//alert("got parent directory");
+                deferred.reject(error);
+            });
+            
+            
+            return deferred.promise;
+        },
+
+        getEntriesAtRoot: function() {
+        	
+        	
+        	
+            var deferred = $q.defer();
+            window.requestFileSystem(LocalFileSystem.PERSISTENT, 0, function(fileSystem) {
+            	
+            	
+            	
+                var directoryReader = fileSystem.root.createReader();
+                directoryReader.readEntries(function(entries) {
+                	
+                	
+                    deferred.resolve(entries);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+                
+                
+                
+                
+            }, function(error) {
+            	alert(error)
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        },
+
+        getEntries: function(path) {
+            var deferred = $q.defer();
+            window.resolveLocalFileSystemURI(path, function(fileSystem) {
+                var directoryReader = fileSystem.createReader();
+                directoryReader.readEntries(function(entries) {
+                    deferred.resolve(entries);
+                }, function(error) {
+                    deferred.reject(error);
+                });
+            }, function(error) {
+                deferred.reject(error);
+            });
+            return deferred.promise;
+        }
+
+    };
+
+    return File;
 })
 
 .config(function($stateProvider, $urlRouterProvider, $ionicAppProvider) {
@@ -87,6 +161,15 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova', 'starter.co
         'menuContent': {
           templateUrl: 'templates/playlists.html',
           controller: 'PlaylistsCtrl'
+        }
+      }
+    })
+    .state('app.downloads', {
+      url: '/downloads',
+      views: {
+        'menuContent': {
+          templateUrl: 'templates/downloads.html',
+          controller: 'DownloadsCtrl'
         }
       }
     })

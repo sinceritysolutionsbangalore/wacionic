@@ -9,9 +9,13 @@
                 </button>
             </ion-nav-buttons>
 
-            <ion-nav-buttons side="right">
-                <button ng-click="gotohome()" class="button button-icon button-clear ion-home">
-                </button>
+
+			
+            <ion-nav-buttons side="right" ng-controller="AppController">
+                <a ng-click="gotohome()"  href="#/playlists" class="button button-icon button-clear ion-home">
+                </a>
+               <!--  <a  ui-sref="app.downloads" class="button button-icon button-clear ion-folder">
+                </a> -->
             </ion-nav-buttons>
         </ion-nav-bar>
         <ion-nav-view name="menuContent"></ion-nav-view>
@@ -40,7 +44,7 @@
                     <div class="panel" role="tab" id="headingOne" style="border:0px;background-color: #ffffff;">
                         <h4 class="panel-title mainMenuListItem" style="border-bottom:1px solid #fafafa;background-color: #ffffff;">					
                             <span ng-if="checkChildNode(playlist)">
-                                <a class="accMainLink" role="button" data-toggle="collapse" 
+                                <a class="accMainLink" id="dn{{playlist.object_id}}" role="button" data-toggle="collapse" 
                                    data-parent="#accordion" href="#{{playlist.object_id}}" >
                                     <i class="fa fa-envira" aria-hidden="true"></i>
                                     <span ng-bind-html="playlist.title"></span>
