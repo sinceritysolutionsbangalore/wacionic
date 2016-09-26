@@ -28,7 +28,9 @@ xmlns:gap="http://phonegap.com/ns/1.0">
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
+  <preference name="OpenAllWhitelistURLsInWebView" value="No" />
   <platform name="ios">
+    
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
     <icon src="resources/ios/icon/icon@2x.png" width="114" height="114"/>
     <icon src="resources/ios/icon/icon-40.png" width="40" height="40"/>
