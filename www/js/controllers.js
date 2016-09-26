@@ -305,7 +305,9 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
     };
     
     
-    
+    $scope.isIOS = ionic.Platform.isIOS();
+  
+  
     $scope.OpenLink = function(event) {
     	
     	
