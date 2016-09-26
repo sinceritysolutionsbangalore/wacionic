@@ -113,7 +113,7 @@
                                                                 <a ng-if="isIOS == false" ng-click="OpenLink($event)"   data-url="{{subsubmenu.url}}" ng-bind-html="subsubmenu.title"></a>
                                                                 <a ng-if="isIOS == true" href="{{subsubmenu.url}}" target="_system" ng-bind-html="subsubmenu.title"></a>
                                                             </span>
-                                                            <a href="{{subsubmenu.url}}" target="_blank">test</a>
+                                                            <a  href="#" onclick="window.open('http://www.google.com', '_system');">test</a>
                                                             <!-- <a ng-bind-html="subsubmenu.title" data-url="{{subsubmenu.url}}"  ng-click="renderPage($event)"></a>  -->
                                                         </ion-item>
                                                     </ion-list> 
