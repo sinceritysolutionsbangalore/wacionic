@@ -314,8 +314,13 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 		
 		var url = $(event.target).attr("data-url");
 		var filename = url.substring(url.lastIndexOf('/')+1);
-		
-		var fileTransfer = new FileTransfer();
+		if($scope.isIOS == true){
+			  var myURL = encodeURI(url);
+    		window.open(myURL, '_system');
+    		return;
+    } else{
+        
+  		var fileTransfer = new FileTransfer();
 	    var filePath = cordova.file.externalDataDirectory + filename;
 
 	    
@@ -408,7 +413,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	    
 	    
 	    
-	    
+    }
 	    
 	    
 	    
