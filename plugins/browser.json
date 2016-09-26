@@ -43,6 +43,9 @@
         "phonegap-plugin-push": {
             "SENDER_ID": "wac-ayurworld",
             "PACKAGE_NAME": "com.ayurworld.wac"
+        },
+        "cordova-plugin-inappbrowser": {
+            "PACKAGE_NAME": "com.ayurworld.wac"
         }
     },
     "dependent_plugins": {
