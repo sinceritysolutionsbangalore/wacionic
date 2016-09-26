@@ -309,6 +309,7 @@ input[type=checkbox]:checked + label:before {
     background-size: 100% !important;
     background-repeat: no-repeat !important;
     background-attachment: fixed !important;
+	background-color:#2a2424;
 }
 
 .block11{
