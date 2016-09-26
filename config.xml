@@ -24,7 +24,9 @@ xmlns:gap="http://phonegap.com/ns/1.0">
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <plugin name="org.li8.inappbrowser" spec="0.1" source="pgb" />
+  <feature name="InAppBrowser">
+        <param name="ios-package" value="CDVInAppBrowser" />
+  </feature>
   <platform name="ios">
     
     <icon src="resources/ios/icon/icon.png" width="57" height="57"/>
