@@ -98,7 +98,7 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 	
 .controller('AppCtrl', function($scope, $compile, $window, $sce,
 		$http, $state, $ionicSideMenuDelegate, $ionicScrollDelegate, 
-		$ionicPopup, $ionicLoading, $cordovaFile, $timeout) {
+		$ionicPopup, $ionicLoading, $cordovaFile, $timeout, $location) {
 	
 	
 	historyArray.push('home');
@@ -127,7 +127,8 @@ angular.module('starter.controllers', ['ionic','ngCordova'])
 		
 		$ionicSideMenuDelegate.toggleLeft(true);
 		$("#2628").addClass("in");
-		
+		$location.hash("dn2628");
+    $ionicScrollDelegate.anchorScroll();
 	}
 	
 	$scope.getBackPage = function() {
