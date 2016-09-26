@@ -24,9 +24,6 @@ xmlns:gap="http://phonegap.com/ns/1.0">
   <feature name="StatusBar">
     <param name="ios-package" value="CDVStatusBar" onload="true"/>
   </feature>
-  <feature name="InAppBrowser">
-        <param name="ios-package" value="CDVInAppBrowser" />
-  </feature>
   <platform name="ios">
     
 <access origin="*" subdomains="true" />
