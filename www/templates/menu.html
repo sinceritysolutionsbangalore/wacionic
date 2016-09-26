@@ -110,8 +110,8 @@
                                                                 <a ng-bind-html="subsubmenu.title" data-url="{{subsubmenu.url}}"  ng-click="renderPage($event)"></a>
                                                             </span>
                                                             <span id="hdjfdkljfdljf" ng-if="!isDownloadLink(subsubmenu)"  data-url="{{subsubmenu.url}}">
-                                                                <a ng-if="isIOS == false" ng-click="OpenLink($event)"   data-url="{{subsubmenu.url}}" ng-bind-html="subsubmenu.title"></a>
-                                                                <a ng-if="isIOS == true" href="{{subsubmenu.url}}" target="_system" ng-bind-html="subsubmenu.title"></a>
+                                                                <a ng-click="OpenLink($event)"   data-url="{{subsubmenu.url}}" ng-bind-html="subsubmenu.title"></a>
+<!--                                                               ng-if="isIOS == false"   <a ng-if="isIOS == true" href="{{subsubmenu.url}}" target="_system" ng-bind-html="subsubmenu.title"></a> -->
                                                             </span>
                                                             <!--<a  href="#" onclick="window.open('http://www.google.com', '_system');">test</a>-->
                                                             <!-- <a ng-bind-html="subsubmenu.title" data-url="{{subsubmenu.url}}"  ng-click="renderPage($event)"></a>  -->
@@ -130,8 +130,8 @@
                                             <a ng-bind-html="submenu.title" data-url="{{submenu.url}}"  ng-click="renderPage($event)"></a>
                                         </span>
                                         <span id="" ng-if="!isDownloadLink(submenu)"    data-url="{{submenu.url}}">
-                                            <a ng-if="isIOS == false" ng-click="OpenLink($event)"   ng-click="OpenLink($event)"   data-url="{{submenu.url}}" ng-bind-html="submenu.title"></a>
-                                            <a ng-if="isIOS == true"  href="{{submenu.url}}" target="_system" ng-bind-html="submenu.title"></a>
+                                            <a  ng-click="OpenLink($event)"   ng-click="OpenLink($event)"   data-url="{{submenu.url}}" ng-bind-html="submenu.title"></a>
+<!--                                           ng-if="isIOS == false"  <a ng-if="isIOS == true"  href="{{submenu.url}}" target="_system" ng-bind-html="submenu.title"></a> -->
                                         </span>
                                     </span>
 
