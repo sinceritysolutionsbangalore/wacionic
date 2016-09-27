@@ -28,7 +28,18 @@ angular.module('starter', ['ionic','ionic.service.core','ngCordova',
       });
       
       
-      
+  if(ionic.Platform.isAndroid()) {
+          var deviceInfo = cordova.require("cordova/plugin/DeviceInformation");
+          
+          deviceInfo.get(function(result) {
+            //alert(result);
+            var results = eval('(' + result + ')');
+            alert(JSON.stringify(results));
+          
+          }, function() {
+            // alert("error");
+          });
+      }    
 
     /* push.register(function(token) {
         console.log("Device token:",token.token);
